@@ -1,0 +1,16 @@
+[package]
+name = "amdy"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.70"
+license = "MIT"
+description = "Rust SDK for the AMDY answering-machine-detection API"
+repository = "https://github.com/nikvb/amdy-api-sdks"
+homepage = "https://amdy.io"
+keywords = ["amdy", "amd", "api", "client"]
+categories = ["api-bindings"]
+
+[dependencies]
+ureq = { version = "2.9", features = ["json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
