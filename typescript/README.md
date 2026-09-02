@@ -32,7 +32,8 @@ await client.getClientSettings();
 
 // Provision the source IPs allowed to reach the detection service
 await client.listIps();
-await client.registerIp("203.0.113.7");
+// The spec defines no request body; the server infers the IP from the originating request.
+await client.registerIp();
 ```
 
 ### Authentication

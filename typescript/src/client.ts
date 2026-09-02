@@ -106,11 +106,9 @@ export class AmdyClient {
     return this.request<IpsList>("GET", "/api/v1/ips");
   }
 
-  /** POST /api/v1/ips/register — register a source IP. */
-  async registerIp(ip: string): Promise<RegisterIpResult> {
-    return this.request<RegisterIpResult>("POST", "/api/v1/ips/register", {
-      body: { ip },
-    });
+  /** POST /api/v1/ips/register — register a source IP. The spec defines no request body; the server infers the IP from the originating request. */
+  async registerIp(): Promise<RegisterIpResult> {
+    return this.request<RegisterIpResult>("POST", "/api/v1/ips/register");
   }
 
   private authHeaders(): Record<string, string> {

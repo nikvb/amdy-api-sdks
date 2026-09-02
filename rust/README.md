@@ -37,7 +37,7 @@ fn main() -> Result<(), AmdyError> {
     let ips = client.ips()?;
 
     // Register a source IP.
-    client.register_ip("203.0.113.10")?;
+    client.register_ip()?;
 
     Ok(())
 }

@@ -15,7 +15,7 @@ Commands:
   get-config                          Detection settings for the authenticated client
   get-client-settings                 Client settings for the authenticated client
   list-ips                            List registered source IPs
-  register-ip <ip>                    Register a source IP permitted to reach the detection service
+  register-ip                         Register a source IP (the server infers it from the request)
 
 Options:
   --base-url <url>   API base URL (default: ${DEFAULT_BASE}; env AMDY_BASE_URL)
@@ -88,12 +88,7 @@ async function main() {
       break;
     case 'register-ip': {
       requireKey(opts);
-      const ip = rest[0];
-      if (!ip) {
-        console.error('error: register-ip requires an IP argument, e.g. amdy-cli register-ip 203.0.113.10');
-        process.exit(2);
-      }
-      await request(opts.base, '/api/v1/ips/register', { ...opts, method: 'POST', body: JSON.stringify({ ip }) });
+      await request(opts.base, '/api/v1/ips/register', { ...opts, method: 'POST' });
       break;
     }
     default:

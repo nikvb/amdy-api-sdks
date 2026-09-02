@@ -42,9 +42,10 @@ module Amdy
       get("/api/v1/ips")
     end
 
-    # POST /api/v1/ips/register - register a source IP.
-    def register_ip(ip)
-      post("/api/v1/ips/register", { "ip" => ip })
+    # POST /api/v1/ips/register - register a source IP. The spec defines no
+    # request body; the server infers the IP from the originating request.
+    def register_ip
+      post("/api/v1/ips/register")
     end
 
     private
@@ -53,10 +54,12 @@ module Amdy
       request(Net::HTTP::Get.new(path), auth: auth)
     end
 
-    def post(path, payload)
+    def post(path, payload = nil)
       req = Net::HTTP::Post.new(path)
-      req["Content-Type"] = "application/json"
-      req.body = JSON.generate(payload)
+      if payload
+        req["Content-Type"] = "application/json"
+        req.body = JSON.generate(payload)
+      end
       request(req, auth: true)
     end
 

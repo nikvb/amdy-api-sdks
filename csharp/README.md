@@ -28,7 +28,7 @@ class Program
         JsonElement settings = await client.GetClientSettingsAsync();
         JsonElement ips = await client.ListIpsAsync();
 
-        await client.RegisterIpAsync("203.0.113.9");
+        await client.RegisterIpAsync();
     }
 }
 ```

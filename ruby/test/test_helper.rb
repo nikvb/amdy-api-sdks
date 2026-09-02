@@ -18,7 +18,7 @@ class FixtureServer
     },
     "/api/v1/client-settings" => { "webhookUrl" => "https://example.test/hook", "timezone" => "UTC" },
     "/api/v1/ips" => { "ips" => ["203.0.113.7", "198.51.100.9"] },
-    "/api/v1/ips/register" => { "registered" => true, "ip" => "203.0.113.7" }
+    "/api/v1/ips/register" => { "registered" => true }
   }.freeze
 
   StatusRoutes = Struct.new(:status, :body)

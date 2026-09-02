@@ -82,9 +82,9 @@ namespace Amdy.Client.Tests
         }
 
         [Fact]
-        public async Task RegisterIp_PostsJsonBodyToCorrectPath()
+        public async Task RegisterIp_PostsWithoutBodyToCorrectPath()
         {
-            JsonElement result = await _client.RegisterIpAsync("203.0.113.9");
+            JsonElement result = await _client.RegisterIpAsync();
 
             Assert.True(result.GetProperty("registered").GetBoolean());
 
@@ -92,7 +92,7 @@ namespace Amdy.Client.Tests
             Assert.Equal("POST", req.Method);
             Assert.Equal("/api/v1/ips/register", req.Path);
             Assert.Equal("Bearer amd_live_test_key", req.Authorization);
-            Assert.Equal("{\"ip\":\"203.0.113.9\"}", req.Body);
+            Assert.Equal("", req.Body);
         }
 
         [Fact]

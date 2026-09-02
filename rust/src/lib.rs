@@ -9,7 +9,7 @@
 //! let health = client.health()?;
 //! let config = client.config()?;
 //! println!("client {} sensitivity {}", config.client_id, config.detection_sensitivity);
-//! client.register_ip("203.0.113.10")?;
+//! client.register_ip()?;
 //! # Ok::<(), amdy::AmdyError>(())
 //! ```
 //!

@@ -208,20 +208,20 @@ fn ips_passes_through() {
 }
 
 #[test]
-fn register_ip_sends_post_with_json_body() {
+fn register_ip_sends_post_without_body() {
     let fx = serve(vec![route(
         "POST",
         "/api/v1/ips/register",
         200,
-        json!({"ip": "203.0.113.10", "status": "registered"}),
+        json!({"status": "registered"}),
     )]);
-    let result = fx.client().register_ip("203.0.113.10").unwrap();
-    assert_eq!(result, json!({"ip": "203.0.113.10", "status": "registered"}));
+    let result = fx.client().register_ip().unwrap();
+    assert_eq!(result, json!({"status": "registered"}));
 
     let req = fx.request();
     assert_eq!(req.method, "POST");
     assert_eq!(req.path, "/api/v1/ips/register");
-    assert_eq!(req.body, r#"{"ip":"203.0.113.10"}"#);
+    assert_eq!(req.body, "");
     assert_eq!(req.authorization, "Bearer amd_live_test_key");
 }
 

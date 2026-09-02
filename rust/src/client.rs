@@ -52,9 +52,10 @@ impl AmdyClient {
         self.request_json("GET", "/api/v1/ips", true, None)
     }
 
-    /// `POST /api/v1/ips/register` — register a source IP.
-    pub fn register_ip(&self, ip: &str) -> Result<Value, AmdyError> {
-        self.request_json("POST", "/api/v1/ips/register", true, Some(json!({ "ip": ip })))
+    /// `POST /api/v1/ips/register` — register a source IP. The spec defines no
+    /// request body; the server infers the IP from the originating request.
+    pub fn register_ip(&self) -> Result<Value, AmdyError> {
+        self.request_json("POST", "/api/v1/ips/register", true, None)
     }
 
     fn request_json(

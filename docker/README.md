@@ -34,8 +34,8 @@ docker run --rm -e AMDY_API_KEY="amd_live_..." amdy-cli:0.1.0 get-client-setting
 # List registered source IPs
 docker run --rm -e AMDY_API_KEY="amd_live_..." amdy-cli:0.1.0 list-ips
 
-# Register a source IP so its traffic is accepted by the detection service
-docker run --rm -e AMDY_API_KEY="amd_live_..." amdy-cli:0.1.0 register-ip 203.0.113.10
+# Register the calling host's IP so its traffic is accepted by the detection service
+docker run --rm -e AMDY_API_KEY="amd_live_..." amdy-cli:0.1.0 register-ip
 ```
 
 Or with an explicit base URL:
@@ -52,7 +52,7 @@ docker run --rm amdy-cli:0.1.0 --base-url https://amdy.io health
 | `get-config` | `GET /api/v1/config` | Bearer / X-API-Key |
 | `get-client-settings` | `GET /api/v1/client-settings` | Bearer / X-API-Key |
 | `list-ips` | `GET /api/v1/ips` | Bearer / X-API-Key |
-| `register-ip <ip>` | `POST /api/v1/ips/register` | Bearer / X-API-Key |
+| `register-ip` | `POST /api/v1/ips/register` | Bearer / X-API-Key |
 
 Any command without an API key exits with code 2 and an error message.
 Non-2xx responses exit with code 1 and print the API error body.

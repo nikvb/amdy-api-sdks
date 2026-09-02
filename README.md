@@ -13,6 +13,7 @@ AMDY tells an outbound dialer whether a live person or a voicemail system answer
 | C# (.NET) | [`csharp/`](./csharp) | NuGet: `Amdy.Client` |
 | Ruby | [`ruby/`](./ruby) | RubyGems: `amdy` |
 | Rust | [`rust/`](./rust) | crates.io: `amdy` |
+| Docker CLI | [`docker/`](./docker) | Docker Hub: `amdy-cli` |
 
 ## Coverage
 
@@ -23,6 +24,10 @@ AMDY tells an outbound dialer whether a live person or a voicemail system answer
 - `POST /api/v1/ips/register` — register a source IP
 
 Auth: `Authorization: Bearer amd_live_...` or `X-API-Key` header.
+
+## Publishing
+
+Intended registries: npm (`amdy`), PyPI (`amdy`), NuGet (`Amdy.Client`), RubyGems (`amdy`), crates.io (`amdy`), and Docker Hub (`amdy-cli`). All packages are version 0.1.0 in this repo; releases to the registries are pending registry credentials.
 
 ## License
 

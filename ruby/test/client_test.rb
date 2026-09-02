@@ -43,14 +43,14 @@ class ClientTest < Minitest::Test
     assert_equal({ "ips" => ["203.0.113.7", "198.51.100.9"] }, ips)
   end
 
-  def test_register_ip_posts_json_to_correct_path
-    result = @server.client.register_ip("203.0.113.7")
-    assert_equal({ "registered" => true, "ip" => "203.0.113.7" }, result)
+  def test_register_ip_posts_to_correct_path_without_body
+    result = @server.client.register_ip
+    assert_equal({ "registered" => true }, result)
     last = @server.requests.last
     assert_equal "POST", last[:method]
     assert_equal "/api/v1/ips/register", last[:path]
-    assert_equal "application/json", last[:content_type]
-    assert_equal({ "ip" => "203.0.113.7" }, JSON.parse(last[:body]))
+    # Net::HTTP stamps a default content type on POST; the important part is the empty body.
+    assert_equal "", last[:body].to_s
   end
 
   def test_401_raises_auth_error_with_server_message

@@ -28,7 +28,7 @@ client.health            # liveness probe (no auth sent)
 client.config            # {"clientId"=>1042, "detectionSensitivity"=>3, ...}
 client.client_settings   # arbitrary settings JSON
 client.ips               # registered source IPs
-client.register_ip("203.0.113.7")  # POST /api/v1/ips/register
+client.register_ip         # POST /api/v1/ips/register (no body; server infers the source IP)
 ```
 
 Timeouts are configurable:

@@ -69,13 +69,10 @@ namespace Amdy.Client
             return SendJsonAsync(HttpMethod.Get, "/api/v1/ips", auth: true, requestBody: null);
         }
 
-        /// <summary>POST /api/v1/ips/register — register a source IP. Body: {"ip":"..."}</summary>
-        public Task<JsonElement> RegisterIpAsync(string ip)
+        /// <summary>POST /api/v1/ips/register — register a source IP. The spec defines no request body; the server infers the IP from the originating request.</summary>
+        public Task<JsonElement> RegisterIpAsync()
         {
-            if (string.IsNullOrEmpty(ip))
-                throw new ArgumentException("IP is required", nameof(ip));
-            string body = JsonSerializer.Serialize(new RegisterIpRequest { Ip = ip }, JsonOptions);
-            return SendJsonAsync(HttpMethod.Post, "/api/v1/ips/register", auth: true, requestBody: body);
+            return SendJsonAsync(HttpMethod.Post, "/api/v1/ips/register", auth: true, requestBody: null);
         }
 
         /// <summary>Disposes the underlying HttpClient when this client created it.</summary>
@@ -135,11 +132,6 @@ namespace Amdy.Client
                 // body was not JSON; fall through
             }
             return null;
-        }
-
-        private class RegisterIpRequest
-        {
-            public string Ip { get; set; }
         }
     }
 }

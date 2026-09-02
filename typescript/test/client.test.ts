@@ -91,20 +91,20 @@ test("authStyle header sends X-API-Key instead of Authorization", async () => {
   }
 });
 
-test("registerIp() POSTs JSON body with Content-Type", async () => {
+test("registerIp() POSTs to the right path with no request body", async () => {
   const fx = await startFixture((req, res) => {
     res.setHeader("content-type", "application/json");
     res.end(JSON.stringify({ registered: true }));
   });
   try {
     const client = new AmdyClient({ apiKey: KEY, baseUrl: fx.baseUrl });
-    const result = await client.registerIp("203.0.113.7");
+    const result = await client.registerIp();
     assert.deepEqual(result, { registered: true });
     const r = fx.requests[0];
     assert.equal(r.method, "POST");
     assert.equal(r.url, "/api/v1/ips/register");
-    assert.equal(r.headers["content-type"], "application/json");
-    assert.deepEqual(JSON.parse(r.body), { ip: "203.0.113.7" });
+    assert.equal(r.headers["content-type"], undefined);
+    assert.equal(r.body, "");
   } finally {
     await fx.close();
   }
