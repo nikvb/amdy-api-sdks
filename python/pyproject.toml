@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amdy"
+version = "0.1.0"
+description = "Python SDK for the AMDY Answering Machine Detection API"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "AMDY" }]
+keywords = ["amd", "answering-machine-detection", "telephony", "predictive-dialer"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications :: Telephony",
+]
+dependencies = []
+
+[project.optional-dependencies]
+ws = ["websockets>=11"]
+
+[project.urls]
+Homepage = "https://amdy.io"
+Documentation = "https://amdy.io/docs/api/reference"
+Repository = "https://github.com/nikvb/amdy-api-sdks"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+amdy = ["py.typed"]
